@@ -1,9 +1,12 @@
 package di;
 
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Component
 public class Input {
 
     public List<String> consoleInput() {
