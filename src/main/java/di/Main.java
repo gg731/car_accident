@@ -12,5 +12,9 @@ public class Main {
         StartUI startUI = context.getBean(StartUI.class);
         startUI.input();
         startUI.print();
+
+        StartUI startUI2 = context.getBean(StartUI.class);
+        startUI2.print();
+
     }
 }
