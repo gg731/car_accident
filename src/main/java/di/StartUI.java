@@ -1,21 +1,23 @@
 package di;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class StartUI {
 
+    @Autowired
     private Store store;
 
     private Input input;
 
-    public StartUI(Store store, Input input) {
-        this.store = store;
+    @Autowired
+    public void setInput(Input input) {
         this.input = input;
     }
 
-    public void input(){
-        for (String s : input.consoleInput()){
+    public void input() {
+        for (String s : input.consoleInput()) {
             store.add(s);
         }
 
@@ -30,4 +32,5 @@ public class StartUI {
             System.out.println(value);
         }
     }
+
 }
