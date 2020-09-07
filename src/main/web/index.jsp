@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
@@ -12,20 +12,20 @@
 <table class="table">
     <thead class="thead-dark">
     <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Text</th>
+        <th scope="col">Address</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach items="${firsts}" var="first">
-    <tr>
-        <th scope="row">1</th>
-        <td>${first}</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-    </tr>
+    <c:forEach items="${accidents}" var="accs">
+        <tr>
+            <th scope="row"><c:out value="${accs.id}"/></th>
+            <th scope="row"><c:out value="${accs.name}"/></th>
+            <th scope="row"><c:out value="${accs.text}"/></th>
+            <th scope="row"><c:out value="${accs.address}"/></th>
+        </tr>
     </c:forEach>
     </tbody>
 </table>
