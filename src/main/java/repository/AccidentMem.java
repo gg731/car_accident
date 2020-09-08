@@ -16,4 +16,5 @@ public class AccidentMem {
     public static HashMap<Integer, Accident> getAccidents() {
         return accidents;
     }
+
 }

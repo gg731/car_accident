@@ -9,7 +9,7 @@ import repository.AccidentMem;
 @Controller
 public class IndexController {
 
-    @GetMapping("/user")
+    @GetMapping("/accidents")
     public String index(Model model) {
         AccidentMem.addAccident(1, new Accident(1, "Accident-1", "Text-1", "Address-1"));
         AccidentMem.addAccident(2, new Accident(2, "Accident-2", "Text-2", "Address-2"));
