@@ -11,7 +11,7 @@
 
 <body>
 
-<form action="<c:url value='/update'/>" method='POST'>
+<form action="<c:url value='/save'/>" method='POST'>
     <div class="form-group">
         <label>ID: <c:out value="${accident.id}"/></label>
     </div>

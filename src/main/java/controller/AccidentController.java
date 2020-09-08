@@ -28,10 +28,4 @@ public class AccidentController {
         model.addAttribute("accident", AccidentMem.getAccidents().get(id));
         return "update";
     }
-
-    @PostMapping("/update")
-    public String update(@ModelAttribute Accident accident) {
-        AccidentMem.addAccident(accident.getId(), accident);
-        return "redirect:/accidents";
-    }
 }
