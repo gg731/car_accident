@@ -37,6 +37,14 @@
             </c:forEach>
         </select>
     </div>
+    <div class="form-group">
+        <label for="address">Rule:</label>
+        <select name="ruleIds" multiple>
+            <c:forEach items="${rules}" var="rule">
+                <option value="${rule.id}">${rule.name}</option>
+            </c:forEach>
+        </select>
+    </div>
 
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

@@ -19,6 +19,7 @@
         <th scope="col">Text</th>
         <th scope="col">Address</th>
         <th scope="col">Type</th>
+        <th scope="col">Rule ID</th>
         <th scope="col"></th>
     </tr>
     </thead>
@@ -30,6 +31,7 @@
             <th scope="row"><c:out value="${accs.text}"/></th>
             <th scope="row"><c:out value="${accs.address}"/></th>
             <th scope="row"><c:out value="${accs.type.id}"/></th>
+            <th scope="row"><c:forEach items="${accs.rules}" var="rule">${rule.id}  </c:forEach></th>
             <th scope="row"><a href="<c:url value="/update?id=${accs.id}"/> ">update</a></th>
         </tr>
     </c:forEach>
