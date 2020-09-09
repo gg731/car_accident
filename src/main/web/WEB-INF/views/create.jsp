@@ -11,7 +11,8 @@
 
 <body>
 
-<form action="<c:url value='/save'/>" method='POST'>
+<form action="<c:url value='/save'/>" method='POST' style="width: 25%;margin-left: 5%">
+    <h2>Create accident</h2>
     <div class="form-group">
         <label for="id">ID:</label>
         <input type="number" class="form-control" id="id" aria-describedby="emailHelp" placeholder="id" name="id">
@@ -28,7 +29,14 @@
         <label for="address">Address:</label>
         <input type="text" class="form-control" id="address" placeholder="address" name="address">
     </div>
-
+    <div class="form-group">
+        <label for="address">Type:</label>
+        <select name="type.id" required>
+            <c:forEach items="${types}" var="type">
+                <option value="${type.id}">${type.name}</option>
+            </c:forEach>
+        </select>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 </body>

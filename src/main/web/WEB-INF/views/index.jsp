@@ -9,14 +9,16 @@
           crossorigin="anonymous">
 </head>
 <body>
-<a href="<c:url value='/create'/>">Создать</a>
-<table class=" table">
+
+<table class=" table" style="margin-left: 5%;width: 90%">
+
     <thead class="thead-dark">
     <tr>
         <th scope="col">id</th>
         <th scope="col">Name</th>
         <th scope="col">Text</th>
         <th scope="col">Address</th>
+        <th scope="col">Type</th>
         <th scope="col"></th>
     </tr>
     </thead>
@@ -27,11 +29,15 @@
             <th scope="row"><c:out value="${accs.name}"/></th>
             <th scope="row"><c:out value="${accs.text}"/></th>
             <th scope="row"><c:out value="${accs.address}"/></th>
+            <th scope="row"><c:out value="${accs.type.id}"/></th>
             <th scope="row"><a href="<c:url value="/update?id=${accs.id}"/> ">update</a></th>
         </tr>
     </c:forEach>
     </tbody>
+
 </table>
+<a href="<c:url value='/create'/>" style="margin-left: 90%">Создать</a>
+
 
 </tbody>
 </table>
