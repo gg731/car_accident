@@ -41,12 +41,12 @@ public class AccidentJdbcTemplate {
     }
 
     public void updateAccident(Accident accident) {
-        jdbc.update(
-                "update accident set name =" + accident.getName()
-                        + " text = " + accident.getText()
-                        + " address = " + accident.getAddress()
-                        + " type_id = " + accident.getType().getId()
-                        + " where id = " + accident.getId());
+        jdbc.update("update `car_accident`.`accident` set"
+                + " `name` = '" + accident.getName() + "' ,"
+                + " `text` = '" + accident.getText() + "' ,"
+                + " `address` = '" + accident.getAddress() + "',"
+                + " `type_id` = " + accident.getType().getId()
+                + " where (`id` = " + accident.getId() + ");");
     }
 
     public AccidentType typeById(int id) {

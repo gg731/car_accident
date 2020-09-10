@@ -1,8 +1,6 @@
 package controller;
 
 import model.Accident;
-import model.Rule;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,9 +8,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import repository.AccidentJdbcTemplate;
-import repository.AccidentMem;
-
-import java.util.Arrays;
 
 @Controller
 public class AccidentController {
@@ -45,7 +40,6 @@ public class AccidentController {
 
     @PostMapping("/update")
     public String update(@ModelAttribute Accident accident) {
-        System.out.println(accident.getId() + "!!!!!!!!!!!!");
         jdbc.updateAccident(accident);
         return "redirect:/accidents";
     }
