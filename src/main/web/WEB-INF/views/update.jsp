@@ -11,12 +11,12 @@
 
 <body>
 
-<form action="<c:url value='/save'/>" method='POST' style="width: 25%;margin-left: 5%">
+<form action="<c:url value='/update'/>" method='POST' style="width: 25%;margin-left: 5%">
     <h2>Update accident</h2>
     <div class="form-group">
         <label>ID: <c:out value="${accident.id}"/></label>
     </div>
-    <input type="hidden" name="id" value="${accident.id}">
+    <input value="${accident.id}" hidden name="id">
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" class="form-control" id="name" placeholder="${accident.name}" name="name">

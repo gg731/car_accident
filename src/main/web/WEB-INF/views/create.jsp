@@ -13,10 +13,7 @@
 
 <form action="<c:url value='/save'/>" method='POST' style="width: 25%;margin-left: 5%">
     <h2>Create accident</h2>
-    <div class="form-group">
-        <label for="id">ID:</label>
-        <input type="number" class="form-control" id="id" aria-describedby="emailHelp" placeholder="id" name="id">
-    </div>
+    <input value="0" hidden name="id">
     <div class="form-group">
         <label for="name">Name:</label>
         <input type="text" class="form-control" id="name" placeholder="name" name="name">
