@@ -4,8 +4,11 @@ import model.Accident;
 import model.AccidentType;
 import model.Rule;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import java.sql.PreparedStatement;
 import java.util.List;
 
 @Repository
@@ -17,12 +20,23 @@ public class AccidentJdbcTemplate {
     }
 
     public Accident save(Accident accident) {
-        int id = jdbc.update(
-                "insert into accident(name,text,address,type_id) values(?,?,?,?)",
-                accident.getName(), accident.getText(),
-                accident.getAddress(), accident.getType().getId());
+        String sql = "insert into accident(name,text,address,type_id) values(?,?,?,?)";
+        KeyHolder keyHolder = new GeneratedKeyHolder();
 
-        accident.setId(id);
+        jdbc.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(
+                    sql, new String[]{"id"});
+            ps.setString(1, accident.getName());
+            ps.setString(2, accident.getText());
+            ps.setString(3, accident.getAddress());
+            ps.setInt(4, accident.getType().getId());
+
+            return ps;
+        }, keyHolder);
+
+        Number key = keyHolder.getKey();
+        accident.setId(key.intValue());
+
         return accident;
     }
 
