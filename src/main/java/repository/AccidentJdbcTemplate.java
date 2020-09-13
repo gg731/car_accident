@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.util.List;
 
-@Repository
+//@Repository
 public class AccidentJdbcTemplate {
     private final JdbcTemplate jdbc;
 
@@ -55,12 +55,15 @@ public class AccidentJdbcTemplate {
     }
 
     public void updateAccident(Accident accident) {
-        jdbc.update("update `car_accident`.`accident` set"
-                + " `name` = '" + accident.getName() + "' ,"
-                + " `text` = '" + accident.getText() + "' ,"
-                + " `address` = '" + accident.getAddress() + "',"
-                + " `type_id` = " + accident.getType().getId()
-                + " where (`id` = " + accident.getId() + ");");
+        String updateAccident = "update accident set name = ?,"
+                + " text = ?, address = ?, type_id = ? where ( id = ? );";
+
+        jdbc.update(updateAccident,
+                accident.getName(),
+                accident.getText(),
+                accident.getAddress(),
+                accident.getType().getId(),
+                accident.getId());
     }
 
     public AccidentType typeById(int id) {
