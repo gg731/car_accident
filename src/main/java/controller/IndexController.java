@@ -3,20 +3,19 @@ package controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import repository.AccidentJdbcTemplate;
+import repository.AccidentHbn;
 
 @Controller
 public class IndexController {
-    private final AccidentJdbcTemplate jdbcTemplate;
+    private final AccidentHbn accidents;
 
-    public IndexController(AccidentJdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public IndexController(AccidentHbn accidents) {
+        this.accidents = accidents;
     }
 
     @GetMapping("/accidents")
     public String index(Model model) {
-
-        model.addAttribute("accidents", jdbcTemplate.getAllAccidents());
+        model.addAttribute("accidents", accidents.getAllAccident());
         return "index";
     }
 }

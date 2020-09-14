@@ -1,10 +1,27 @@
 package model;
 
-import java.util.Objects;
+import javax.persistence.*;
+import java.util.*;
 
+@Entity
+@Table(name = "rule")
 public class Rule {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+
+    public Rule() {
+    }
+
+    public Rule(int id) {
+        this.id = id;
+    }
+
+    public Rule(String name) {
+        this.name = name;
+    }
 
     public static Rule of(int id, String name) {
         Rule rule = new Rule();
@@ -43,4 +60,5 @@ public class Rule {
     public int hashCode() {
         return Objects.hash(id, name);
     }
+
 }

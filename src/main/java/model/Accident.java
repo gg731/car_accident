@@ -1,22 +1,34 @@
 package model;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import javax.persistence.*;
+import java.util.*;
 
+@Entity
+@Table(name = "accident")
 public class Accident {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private String text;
     private String address;
+    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JoinColumn(name = "type_id")
     private AccidentType type;
-    private Set<Rule> rules = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "accident_rule", joinColumns = {
+            @JoinColumn(name = "accident_id")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "rule_id")})
+    private List<Rule> rules = new ArrayList<>();
 
     public Accident() {
     }
 
-    public Accident(int id, String name, String text, String address, AccidentType type, Set<Rule> rules) {
+    public Accident(int id, String name, String text, String address,
+                    AccidentType type, List<Rule> rules) {
         this.id = id;
         this.name = name;
         this.text = text;
@@ -69,12 +81,12 @@ public class Accident {
         this.type = type;
     }
 
-    public Set<Rule> getRules() {
-        return rules;
+    public void setRules(List<Rule> rules) {
+        this.rules = rules;
     }
 
-    public void setRules(Set<Rule> rules) {
-        this.rules = rules;
+    public List<Rule> getRules() {
+        return rules;
     }
 
     @Override
@@ -82,12 +94,12 @@ public class Accident {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Accident accident = (Accident) o;
-        return id == accident.id &
-                Objects.equals(name, accident.name)
-                && Objects.equals(text, accident.text)
-                && Objects.equals(address, accident.address)
-                && Objects.equals(type, accident.type)
-                && Objects.equals(rules, accident.rules);
+        return id == accident.id &&
+                Objects.equals(name, accident.name) &&
+                Objects.equals(text, accident.text) &&
+                Objects.equals(address, accident.address) &&
+                Objects.equals(type, accident.type) &&
+                Objects.equals(rules, accident.rules);
     }
 
     @Override

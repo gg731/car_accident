@@ -1,10 +1,19 @@
 package model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
+@Entity
+@Table(name = "type")
 public class AccidentType {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
+
+    public AccidentType() {
+    }
 
     public static AccidentType of(int id, String name) {
         AccidentType accidentType = new AccidentType();
