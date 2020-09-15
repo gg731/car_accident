@@ -19,14 +19,7 @@ public class AccidentHbn {
 
     public Accident saveAccident(Accident accident) {
         try (Session session = sf.openSession()) {
-            session.save(accident);
-            return accident;
-        }
-    }
-
-    public Accident updateAccident(Accident accident) {
-        try (Session session = sf.openSession()) {
-            session.update(accident);
+            session.saveOrUpdate(accident);
             return accident;
         }
     }
@@ -57,7 +50,7 @@ public class AccidentHbn {
 
     public Accident accidentById(int id) {
         try (Session session = sf.openSession()) {
-            return session.find(Accident.class, id);
+            return session.get(Accident.class, id);
         } catch (Exception e) {
             return null;
         }
@@ -65,7 +58,15 @@ public class AccidentHbn {
 
     public Rule ruleById(int id) {
         try (Session session = sf.openSession()) {
-            return session.find(Rule.class, id);
+            return session.get(Rule.class, id);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public AccidentType typeById(int id) {
+        try (Session session = sf.openSession()) {
+            return session.find(AccidentType.class, id);
         } catch (Exception e) {
             return null;
         }

@@ -22,6 +22,12 @@ public class AccidentType {
         return accidentType;
     }
 
+    public static AccidentType of(int id) {
+        AccidentType accidentType = new AccidentType();
+        accidentType.id = id;
+        return accidentType;
+    }
+
     public int getId() {
         return id;
     }

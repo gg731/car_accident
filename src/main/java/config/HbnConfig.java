@@ -9,13 +9,14 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
 @PropertySource("classpath:app.properties")
-
+@EnableTransactionManagement
 public class HbnConfig {
 
     @Bean
@@ -34,13 +35,14 @@ public class HbnConfig {
 
     @Bean
     public LocalSessionFactoryBean sessionFactory(@Value("${hibernate.dialect}") String dialect,
+                                                  @Value("${hibernate.show_sql}") String showSql,
                                                   DataSource ds) {
         LocalSessionFactoryBean sf = new LocalSessionFactoryBean();
         sf.setDataSource(ds);
         sf.setPackagesToScan("model");
         Properties ps = new Properties();
         ps.setProperty("hibernate.dialect", dialect);
-        ps.setProperty("hibernate.show_sql", "true");
+        ps.setProperty("hibernate.show_sql", showSql);
         sf.setHibernateProperties(ps);
         return sf;
     }

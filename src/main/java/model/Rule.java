@@ -12,6 +12,9 @@ public class Rule {
     private int id;
     private String name;
 
+    @ManyToMany(mappedBy = "rules")
+    private List<Accident> accidents = new ArrayList<>();
+
     public Rule() {
     }
 

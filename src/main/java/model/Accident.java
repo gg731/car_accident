@@ -13,15 +13,16 @@ public class Accident {
     private String name;
     private String text;
     private String address;
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
     private AccidentType type;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "accident_rule", joinColumns = {
-            @JoinColumn(name = "accident_id")},
+            @JoinColumn(name = "accident_id", referencedColumnName = "id")},
             inverseJoinColumns = {
-                    @JoinColumn(name = "rule_id")})
+                    @JoinColumn(name = "rule_id", referencedColumnName = "id")})
     private List<Rule> rules = new ArrayList<>();
 
     public Accident() {
@@ -94,16 +95,16 @@ public class Accident {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Accident accident = (Accident) o;
-        return id == accident.id &&
-                Objects.equals(name, accident.name) &&
-                Objects.equals(text, accident.text) &&
-                Objects.equals(address, accident.address) &&
-                Objects.equals(type, accident.type) &&
-                Objects.equals(rules, accident.rules);
+        return id == accident.id
+                && Objects.equals(name, accident.name)
+                && Objects.equals(text, accident.text)
+                && Objects.equals(address, accident.address)
+                && Objects.equals(type, accident.type)
+                && Objects.equals(rules, accident.rules);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, text, address, type, rules);
+        return Objects.hash(id, name, text, address);
     }
 }
