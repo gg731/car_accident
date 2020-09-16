@@ -5,25 +5,25 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "type")
-public class AccidentType {
+public class Type {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
 
-    public AccidentType() {
+    public Type() {
     }
 
-    public static AccidentType of(int id, String name) {
-        AccidentType accidentType = new AccidentType();
+    public static Type of(int id, String name) {
+        Type accidentType = new Type();
         accidentType.id = id;
         accidentType.name = name;
         return accidentType;
     }
 
-    public static AccidentType of(int id) {
-        AccidentType accidentType = new AccidentType();
+    public static Type of(int id) {
+        Type accidentType = new Type();
         accidentType.id = id;
         return accidentType;
     }
@@ -48,7 +48,7 @@ public class AccidentType {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccidentType that = (AccidentType) o;
+        Type that = (Type) o;
         return id == that.id
                 && Objects.equals(name, that.name);
     }

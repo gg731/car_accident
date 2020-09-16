@@ -15,10 +15,10 @@ public class Accident {
     private String address;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "type_id")
-    private AccidentType type;
+    private Type type;
 
     @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+            cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinTable(name = "accident_rule", joinColumns = {
             @JoinColumn(name = "accident_id", referencedColumnName = "id")},
             inverseJoinColumns = {
@@ -29,7 +29,7 @@ public class Accident {
     }
 
     public Accident(int id, String name, String text, String address,
-                    AccidentType type, List<Rule> rules) {
+                    Type type, List<Rule> rules) {
         this.id = id;
         this.name = name;
         this.text = text;
@@ -74,11 +74,11 @@ public class Accident {
         this.address = address;
     }
 
-    public AccidentType getType() {
+    public Type getType() {
         return type;
     }
 
-    public void setType(AccidentType type) {
+    public void setType(Type type) {
         this.type = type;
     }
 

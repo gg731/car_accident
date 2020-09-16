@@ -1,7 +1,7 @@
 package repository;
 
 import model.Accident;
-import model.AccidentType;
+import model.Type;
 import model.Rule;
 import org.springframework.stereotype.Repository;
 
@@ -26,11 +26,11 @@ public class AccidentMem {
         return rules;
     }
 
-    public static List<AccidentType> getTypes() {
-        List<AccidentType> types = new ArrayList<>();
-        types.add(AccidentType.of(1, "Type-1"));
-        types.add(AccidentType.of(2, "Type-2"));
-        types.add(AccidentType.of(3, "Type-3"));
+    public static List<Type> getTypes() {
+        List<Type> types = new ArrayList<>();
+        types.add(Type.of(1, "Type-1"));
+        types.add(Type.of(2, "Type-2"));
+        types.add(Type.of(3, "Type-3"));
 
         return types;
     }

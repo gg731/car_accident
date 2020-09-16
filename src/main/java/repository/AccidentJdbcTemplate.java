@@ -1,7 +1,7 @@
 package repository;
 
 import model.Accident;
-import model.AccidentType;
+import model.Type;
 import model.Rule;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 import java.sql.PreparedStatement;
 import java.util.List;
 
-//@Repository
+@Repository
 public class AccidentJdbcTemplate {
     private final JdbcTemplate jdbc;
 
@@ -66,10 +66,10 @@ public class AccidentJdbcTemplate {
                 accident.getId());
     }
 
-    public AccidentType typeById(int id) {
+    public Type typeById(int id) {
         return jdbc.queryForObject("select * from type where id = ?",
                 (rs, rowNum) -> {
-                    AccidentType accidentType = new AccidentType();
+                    Type accidentType = new Type();
                     accidentType.setId(rs.getInt("id"));
                     accidentType.setName(rs.getString("name"));
 
@@ -113,10 +113,10 @@ public class AccidentJdbcTemplate {
                 });
     }
 
-    public List<AccidentType> getAllTypes() {
+    public List<Type> getAllTypes() {
         return jdbc.query("select * from type",
                 (rs, row) -> {
-                    AccidentType type = new AccidentType();
+                    Type type = new Type();
                     type.setId(rs.getInt("id"));
                     type.setName(rs.getString("name"));
 

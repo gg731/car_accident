@@ -1,7 +1,7 @@
 package repository;
 
 import model.Accident;
-import model.AccidentType;
+import model.Type;
 import model.Rule;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -40,10 +40,10 @@ public class AccidentHbn {
         }
     }
 
-    public List<AccidentType> getAllType() {
+    public List<Type> getAllType() {
         try (Session session = sf.openSession()) {
             return session
-                    .createQuery("from AccidentType ", AccidentType.class)
+                    .createQuery("from Type ", Type.class)
                     .list();
         }
     }
@@ -64,9 +64,9 @@ public class AccidentHbn {
         }
     }
 
-    public AccidentType typeById(int id) {
+    public Type typeById(int id) {
         try (Session session = sf.openSession()) {
-            return session.find(AccidentType.class, id);
+            return session.find(Type.class, id);
         } catch (Exception e) {
             return null;
         }
