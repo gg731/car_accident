@@ -18,7 +18,7 @@ public class Accident {
     private Type type;
 
     @ManyToMany(fetch = FetchType.EAGER,
-            cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+            cascade = CascadeType.ALL)
     @JoinTable(name = "accident_rule", joinColumns = {
             @JoinColumn(name = "accident_id", referencedColumnName = "id")},
             inverseJoinColumns = {

@@ -11,7 +11,9 @@
 <body>
 
 <table class=" table" style="margin-left: 5%;width: 90%">
-
+    <div>
+        Login as : ${user.username}
+    </div>
     <thead class="thead-dark">
     <tr>
         <th scope="col">id</th>
